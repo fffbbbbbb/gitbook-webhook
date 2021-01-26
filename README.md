@@ -1,0 +1,2 @@
+# gitbook-webhook
+gitbook的docker镜像，可以配置github的webhook以实现自动部署
