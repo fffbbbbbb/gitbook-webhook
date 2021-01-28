@@ -5,7 +5,7 @@ WORKDIR /build
 ENV GOPROXY https://goproxy.cn
 
 COPY . .
-
+COPY /root/.ssh /root/.ssh
 RUN CGO_ENABLED=0 GOARCH=amd64 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o webhook
 
 FROM node:12.20.1-alpine3.10
