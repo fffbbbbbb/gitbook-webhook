@@ -18,7 +18,7 @@ RUN echo -e 'https://mirrors.aliyun.com/alpine/v3.12/main/\nhttps://mirrors.aliy
 
 RUN mkdir /root/.ssh
 
-COPY ./ssh /root/.ssh
+COPY ./sshSecret /root/.ssh
 
 WORKDIR /app
 
