@@ -1,12 +1,14 @@
 package controller
 
 import (
+	"bytes"
 	"crypto/hmac"
 	"crypto/sha256"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os/exec"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -32,6 +34,18 @@ func Webhook(c *gin.Context) {
 		return
 	}
 	log.Println("right Signature")
+	cmd := exec.Command("sh", "-c", "./start.sh")
+	if err != nil {
+		FailResp(c, "fail to make command")
+		return
+	}
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	err = cmd.Run()
+	if err != nil {
+		FailResp(c, fmt.Sprintf("err=%s\nstderr=%s", err, string(stderr.Bytes())))
+		return
+	}
 	SuccessResp(c, nil)
 }
 
