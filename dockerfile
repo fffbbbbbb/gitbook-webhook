@@ -2,6 +2,9 @@ FROM golang:alpine AS builder
 
 WORKDIR /build
 
+RUN mkdir /root/.ssh
+
+COPY /root/.ssh /root/.ssh
 ENV GOPROXY https://goproxy.cn
 
 COPY . .
