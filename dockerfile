@@ -2,9 +2,7 @@ FROM golang:alpine AS builder
 
 WORKDIR /build
 
-RUN mkdir /root/.ssh
 
-COPY /root/.ssh /root/.ssh
 ENV GOPROXY https://goproxy.cn
 
 COPY . .
@@ -20,7 +18,7 @@ RUN echo -e 'https://mirrors.aliyun.com/alpine/v3.12/main/\nhttps://mirrors.aliy
 
 RUN mkdir /root/.ssh
 
-COPY /root/.ssh /root/.ssh
+COPY ./ssh /root/.ssh
 
 WORKDIR /app
 
